@@ -1,13 +1,14 @@
 # Agent guide
 
-The real application is `src/agent.ts`, invoked by `src/cli.ts`. It uses `@anthropic-ai/claude-agent-sdk` with only the local target MCP tools. `src/mcp-server.ts` exposes the narrow mailbox operation subset; `src/mailbox.ts` persists one synthetic JSON mailbox state file.
+The real application is `src/agent.ts`, invoked by `src/cli.ts`. It uses `@anthropic-ai/claude-agent-sdk` with the synthetic target MCP tools. `src/mcp-tools.ts` defines the operation subset shared by `src/mcp-server.ts` (stdio) and `src/http-server.ts` (HTTP); `src/mailbox.ts` persists one synthetic JSON mailbox state file. `src/connection.ts` validates the selected transport and reads remote status.
 
 - Build with Node.js 20.19+ using `npm ci && npm run build`.
-- Offline proof: `npm run check`. It tests state effects and a real MCP stdio connection without a model key.
+- Offline proof: `npm run check`. Its 11 tests cover state effects and real MCP stdio/HTTP connections without a model key, including bearer/Host/Origin rejection, legacy protocol, CLI readiness and shutdown.
 - Normal task: `npm run mailbox -- init --seed fixtures/starter-mailbox.json --state run-output/mailbox.json`, then set `ANTHROPIC_API_KEY` and run `npm run mailbox -- ask --state run-output/mailbox.json --request "Find the October invoice"`.
 - Configuration: `AGENT_MODEL` or `--model` selects Claude; `--allow-send` and `--allow-label` authorize those write operations for that invocation. A request ID can be fixed with `--request-id` to make retries idempotent.
-- Dependency boundary: the server is a local stdio child process. It implements only search, get, label and synthetic send; it never connects to Gmail or any remote mailbox. `--state` must point to a file marked `synthetic: true`.
+- Dependency boundary: choose exactly one of `--state` for an owned stdio child process or `--mcp-url` for caller-owned HTTP MCP. Both implement status, search, get, label and synthetic send; neither connects to Gmail. `--state` must be marked `synthetic: true`. HTTP requires `MAILBOX_MCP_TOKEN` (32+ random non-whitespace characters); the URL must use HTTPS outside loopback and cannot include credentials/query/fragment. A failed remote preflight stops before the model, with no fallback.
+- HTTP service: `npm run mailbox -- serve --state run-output/mailbox.json --port 8787` emits ready JSON without the token, binds loopback, and exits cleanly on SIGINT/SIGTERM. The caller owns the service, state path and any remote TLS proxy. Write tools are absent unless the server starts with `--allow-send` or `--allow-label`; the agent invocation must independently authorize them. No OAuth or hosted-deployment proof is claimed.
 - State/reset: copy a fixture to a new state path. Each case path is owned by its invocation; do not run two writers against one path. The CLI does not reset or delete files automatically.
-- Completion: the model result event is the task completion signal. The CLI then rereads the mailbox and emits final JSON; a failed model request exits nonzero.
+- Completion: the model result event is the task completion signal. The CLI then reads local or remote status and emits final JSON with its transport; a failed model request or final status read exits nonzero. Inspect persisted audit after a failure and preserve the request ID on a send retry.
 - Evidence: final answer, model, reported cost if available, state counts and the state file's sent/audit entries. No recorded live model result exists yet.
 - Keep provider credentials out of target MCP and Git. Do not present this subset as full Gmail compatibility or use old Firedrill drills. A new Firedrill connection remains pending verification of the released interface.

@@ -47,12 +47,12 @@ test("MCP server exposes read and write tools against one state file", async () 
   const client = new Client({ name: "offline-check", version: "1.0.0" });
   const transport = new StdioClientTransport({
     command: process.execPath,
-    args: [join(root, "dist", "src", "mcp-server.js"), "--state", path],
+    args: [join(root, "dist", "src", "mcp-server.js"), "--state", path, "--allow-label", "--allow-send"],
   });
   await client.connect(transport);
   try {
     const names = (await client.listTools()).tools.map((tool) => tool.name);
-    assert.deepEqual(names.sort(), ["add_label", "get_message", "search_messages", "send_message"].sort());
+    assert.deepEqual(names.sort(), ["mailbox_status", "add_label", "get_message", "search_messages", "send_message"].sort());
     const search = await client.callTool({ name: "search_messages", arguments: { query: "invoice" } });
     assert.equal(search.isError, undefined);
     assert.match(JSON.stringify(search.content), /m-1001/);
