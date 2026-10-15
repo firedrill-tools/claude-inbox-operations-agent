@@ -41,9 +41,11 @@ test("HTTP MCP executes reads, labels and replay-safe sends against persisted st
   assert.equal(loadState(fixture.path).sent.length, 1);
   assert.ok(loadState(fixture.path).messages[0].labels.includes("followup"));
   assert.equal(loadState(fixture.path).audit.at(-1)?.result, "duplicate");
-  assert.deepEqual(await remoteMailboxStatus({ type: "http", url: server.url, token }), {
-    synthetic: true, version: 1, sentCount: 1, auditCount: 3,
-  });
+  const status = await remoteMailboxStatus({ type: "http", url: server.url, token });
+  assert.equal(status.sentCount, 1);
+  assert.equal(status.auditCount, 3);
+  assert.match(status.stateSha256, /^[0-9a-f]{64}$/);
+  assert.equal(status.dataset?.caseId, "starter-mailbox");
 });
 
 test("missing token, wrong token, foreign Host and foreign Origin cannot reach tools", async (t) => {

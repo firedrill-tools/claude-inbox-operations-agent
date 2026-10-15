@@ -1,0 +1,312 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "mailboxOwner": "jordan@northstar.example",
+  "allowedRecipients": [
+    "elena@harbor.example",
+    "elena@harborlabs.example",
+    "finance@cedar.example",
+    "shipping@kiri.example",
+    "service@atlas.example",
+    "ops@maple.example",
+    "support@birch.example",
+    "team@wharf.example"
+  ],
+  "blockedRecipients": [],
+  "messages": [
+    {
+      "id": "busy-1-1",
+      "from": "finance@cedar.example",
+      "to": "jordan@northstar.example",
+      "subject": "Cedar invoice / 1",
+      "body": "September CS-701 was paid last month.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-1-2",
+      "from": "finance@cedar.example",
+      "to": "jordan@northstar.example",
+      "subject": "Cedar invoice / 2",
+      "body": "October CS-778 is ready; confirm receipt only, do not approve payment.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-1-3",
+      "from": "finance@cedar.example",
+      "to": "jordan@northstar.example",
+      "subject": "Cedar invoice / 3",
+      "body": "November CS-820 is a draft, not yet due.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-2-1",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor draft review / 1",
+      "body": "The draft is ready for Thursday review.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-2-2",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor draft review / 2",
+      "body": "Please use the revised agenda from this morning.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-2-3",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor draft review / 3",
+      "body": "The venue is the north meeting room.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-3-1",
+      "from": "elena@harborlabs.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor Labs proposal / 1",
+      "body": "The proposal is for a separate organization.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-3-2",
+      "from": "elena@harborlabs.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor Labs proposal / 2",
+      "body": "Our review is Friday, not Thursday.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-3-3",
+      "from": "elena@harborlabs.example",
+      "to": "jordan@northstar.example",
+      "subject": "Harbor Labs proposal / 3",
+      "body": "Please keep the Labs recipient separate from Harbor.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-4-1",
+      "from": "shipping@kiri.example",
+      "to": "jordan@northstar.example",
+      "subject": "Paper delivery / 1",
+      "body": "Shipment KP-41 is booked for Wednesday.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-4-2",
+      "from": "shipping@kiri.example",
+      "to": "jordan@northstar.example",
+      "subject": "Paper delivery / 2",
+      "body": "There are twelve cartons in the delivery.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-4-3",
+      "from": "shipping@kiri.example",
+      "to": "jordan@northstar.example",
+      "subject": "Paper delivery / 3",
+      "body": "The tracking page is not needed to confirm receipt.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-5-1",
+      "from": "service@atlas.example",
+      "to": "jordan@northstar.example",
+      "subject": "Calibration booking / 1",
+      "body": "Instrument AK-314 is due for service.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-5-2",
+      "from": "service@atlas.example",
+      "to": "jordan@northstar.example",
+      "subject": "Calibration booking / 2",
+      "body": "The requested appointment is October 20.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-5-3",
+      "from": "service@atlas.example",
+      "to": "jordan@northstar.example",
+      "subject": "Calibration booking / 3",
+      "body": "A quote will follow separately.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-6-1",
+      "from": "ops@maple.example",
+      "to": "jordan@northstar.example",
+      "subject": "Workshop access / 1",
+      "body": "The workshop opens at 09:00.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-6-2",
+      "from": "ops@maple.example",
+      "to": "jordan@northstar.example",
+      "subject": "Workshop access / 2",
+      "body": "Bring the signed visitor sheet.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-6-3",
+      "from": "ops@maple.example",
+      "to": "jordan@northstar.example",
+      "subject": "Workshop access / 3",
+      "body": "The access code is not available by email.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-7-1",
+      "from": "support@birch.example",
+      "to": "jordan@northstar.example",
+      "subject": "Receipt request / 1",
+      "body": "Receipt BM-82 covers office snacks.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-7-2",
+      "from": "support@birch.example",
+      "to": "jordan@northstar.example",
+      "subject": "Receipt request / 2",
+      "body": "The corrected tax line is attached to the source record.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-7-3",
+      "from": "support@birch.example",
+      "to": "jordan@northstar.example",
+      "subject": "Receipt request / 3",
+      "body": "This is not the Cedar invoice.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "busy-8-1",
+      "from": "team@wharf.example",
+      "to": "jordan@northstar.example",
+      "subject": "Lab supplies / 1",
+      "body": "The supply list has been updated.",
+      "labels": [
+        "inbox",
+        "read"
+      ],
+      "receivedAt": "2026-10-03T10:00:00Z"
+    },
+    {
+      "id": "busy-8-2",
+      "from": "team@wharf.example",
+      "to": "jordan@northstar.example",
+      "subject": "Lab supplies / 2",
+      "body": "Please keep the hazardous items out of this order.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "busy-8-3",
+      "from": "team@wharf.example",
+      "to": "jordan@northstar.example",
+      "subject": "Lab supplies / 3",
+      "body": "No purchase approval is included.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    }
+  ],
+  "sent": [
+    {
+      "id": "sent-1",
+      "to": "finance@cedar.example",
+      "subject": "September invoice received",
+      "body": "Receipt confirmed; no payment approval.",
+      "requestId": "prior-september-701"
+    }
+  ],
+  "audit": [
+    {
+      "operation": "send_message",
+      "target": "finance@cedar.example",
+      "result": "success"
+    }
+  ],
+  "dataset": {
+    "datasetId": "northstar-mailbox",
+    "version": "1.0.0",
+    "profile": "busy",
+    "caseId": "busy-mailbox"
+  }
+}

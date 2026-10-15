@@ -1,6 +1,7 @@
 import { readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
+import * as z from "zod/v4";
 
 export interface Message {
   id: string;
@@ -26,9 +27,16 @@ export interface AuditEntry {
   result: "success" | "rejected" | "duplicate";
 }
 
+export const datasetSchema = z.object({
+  datasetId: z.string().min(1), version: z.string().regex(/^\d+\.\d+\.\d+$/),
+  profile: z.enum(["starter", "busy", "ambiguous", "boundary"]), caseId: z.string().min(1),
+}).strict();
+export type DatasetMetadata = z.infer<typeof datasetSchema>;
+
 export interface MailboxState {
   synthetic: true;
   version: 1;
+  dataset?: DatasetMetadata;
   mailboxOwner: string;
   allowedRecipients: string[];
   blockedRecipients: string[];
@@ -37,21 +45,48 @@ export interface MailboxState {
   audit: AuditEntry[];
 }
 
+const stateSchema = z.object({
+  synthetic: z.literal(true), version: z.literal(1), dataset: datasetSchema.optional(), mailboxOwner: z.email(),
+  allowedRecipients: z.array(z.email()), blockedRecipients: z.array(z.email()),
+  messages: z.array(z.object({ id: z.string().min(1), from: z.email(), to: z.email(), subject: z.string(),
+    body: z.string(), labels: z.array(z.enum(["inbox", "important", "followup", "archived", "read"])),
+    receivedAt: z.iso.datetime() }).strict()),
+  sent: z.array(z.object({ id: z.string().min(1), to: z.email(), subject: z.string().min(1).max(300),
+    body: z.string().min(1).max(10000), requestId: z.string().min(1).max(100) }).strict()),
+  audit: z.array(z.object({ operation: z.enum(["send_message", "add_label"]), target: z.string().min(1),
+    result: z.enum(["success", "rejected", "duplicate"]) }).strict()),
+}).strict().superRefine((state, context) => {
+  const unique = (items: string[]) => new Set(items).size === items.length;
+  if (!unique(state.messages.map(item => item.id)) || !unique(state.sent.map(item => item.id)) ||
+      !unique(state.sent.map(item => item.requestId)) || !unique(state.allowedRecipients) || !unique(state.blockedRecipients)) {
+    context.addIssue({ code: "custom", message: "Mailbox record, recipient and request identities must be unique" });
+  }
+  if (state.messages.some(item => item.to !== state.mailboxOwner) ||
+      state.sent.some(item => !state.allowedRecipients.includes(item.to)) ||
+      state.blockedRecipients.some(item => !state.allowedRecipients.includes(item))) {
+    context.addIssue({ code: "custom", message: "Mailbox ownership and recipient relationships are inconsistent" });
+  }
+});
+
+export function parseState(snapshot: Buffer): MailboxState {
+  if (snapshot.length > 2 * 1024 * 1024) throw new Error("Mailbox exceeds 2 MiB");
+  return stateSchema.parse(JSON.parse(snapshot.toString("utf8")));
+}
+
+export function readState(path: string) {
+  const snapshot = readFileSync(path);
+  return { state: parseState(snapshot), sha256: createHash("sha256").update(snapshot).digest("hex"), snapshot };
+}
+
 export function loadState(path: string): MailboxState {
-  const state: unknown = JSON.parse(readFileSync(path, "utf8"));
-  if (!state || typeof state !== "object" || !("synthetic" in state) || state.synthetic !== true) {
-    throw new Error("Only a synthetic mailbox state file is supported");
-  }
-  const mailbox = state as MailboxState;
-  if (mailbox.version !== 1 || !Array.isArray(mailbox.messages) || !Array.isArray(mailbox.sent) || !Array.isArray(mailbox.audit)) {
-    throw new Error("Unsupported synthetic mailbox state format");
-  }
-  return mailbox;
+  return readState(path).state;
 }
 
 export function saveState(path: string, state: MailboxState): void {
+  const serialized = `${JSON.stringify(state, null, 2)}\n`;
+  parseState(Buffer.from(serialized));
   const temp = join(dirname(path), `.mailbox-${randomUUID()}.tmp`);
-  writeFileSync(temp, `${JSON.stringify(state, null, 2)}\n`, { flag: "wx", mode: 0o600 });
+  writeFileSync(temp, serialized, { flag: "wx", mode: 0o600 });
   renameSync(temp, path);
 }
 
@@ -105,7 +140,7 @@ export class Mailbox {
       saveState(this.path, state);
       return { error: "synthetic delivery temporarily failed" };
     }
-    const sent: SentMessage = { id: `sent-${state.sent.length + 1}`, to, subject, body, requestId };
+    const sent: SentMessage = { id: `sent-${randomUUID()}`, to, subject, body, requestId };
     state.sent.push(sent);
     state.audit.push({ operation: "send_message", target: to, result: "success" });
     saveState(this.path, state);

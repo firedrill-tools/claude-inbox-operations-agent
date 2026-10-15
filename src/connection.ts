@@ -3,10 +3,12 @@ import type { McpServerConfig } from "@anthropic-ai/claude-agent-sdk";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { validateToken } from "./http-server.js";
+import { datasetSchema, type DatasetMetadata } from "./mailbox.js";
 import { type MailboxPermissions } from "./mcp-tools.js";
 
 export type MailboxConnection = { type: "stdio"; statePath: string } | { type: "http"; url: string; token: string };
-export interface RemoteStatus { synthetic: true; version: 1; sentCount: number; auditCount: number }
+export interface RemoteStatus { synthetic: true; version: 1; sentCount: number; auditCount: number; messageCount: number;
+  stateSha256: string; dataset: DatasetMetadata | null }
 
 export function mailboxMcpConfig(connection: MailboxConnection, permissions: MailboxPermissions): McpServerConfig {
   if (connection.type === "stdio") return {
@@ -38,7 +40,10 @@ export async function remoteMailboxStatus(connection: Extract<MailboxConnection,
     if (result.isError || !text || text.type !== "text") throw new Error("mailbox status is unavailable");
     const status = JSON.parse(text.text) as RemoteStatus;
     if (status.synthetic !== true || status.version !== 1 || !Number.isSafeInteger(status.sentCount) || status.sentCount < 0 ||
-      !Number.isSafeInteger(status.auditCount) || status.auditCount < 0) throw new Error("unsupported synthetic mailbox status");
+      !Number.isSafeInteger(status.auditCount) || status.auditCount < 0 ||
+      !Number.isSafeInteger(status.messageCount) || status.messageCount < 0 ||
+      typeof status.stateSha256 !== "string" || !/^[0-9a-f]{64}$/.test(status.stateSha256) ||
+      (status.dataset !== null && !datasetSchema.safeParse(status.dataset).success)) throw new Error("unsupported synthetic mailbox status");
     return status;
   } finally {
     await client.close();

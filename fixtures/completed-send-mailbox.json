@@ -1,0 +1,46 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "mailboxOwner": "jordan@northstar.example",
+  "allowedRecipients": [
+    "elena@harbor.example",
+    "elena@harborlabs.example",
+    "finance@cedar.example"
+  ],
+  "blockedRecipients": [],
+  "messages": [
+    {
+      "id": "replay-1",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Thursday check-in",
+      "body": "Please confirm Thursday review.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-06T10:00:00Z"
+    }
+  ],
+  "sent": [
+    {
+      "id": "sent-1",
+      "to": "elena@harbor.example",
+      "subject": "Thursday review",
+      "body": "Thursday review is confirmed.",
+      "requestId": "review-1002"
+    }
+  ],
+  "audit": [
+    {
+      "operation": "send_message",
+      "target": "elena@harbor.example",
+      "result": "success"
+    }
+  ],
+  "dataset": {
+    "datasetId": "northstar-mailbox",
+    "version": "1.0.0",
+    "profile": "boundary",
+    "caseId": "completed-send-mailbox"
+  }
+}

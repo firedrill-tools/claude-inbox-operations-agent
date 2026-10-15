@@ -1,0 +1,87 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "mailboxOwner": "jordan@northstar.example",
+  "allowedRecipients": [
+    "elena@harbor.example",
+    "elena@harborlabs.example",
+    "finance@cedar.example"
+  ],
+  "blockedRecipients": [],
+  "messages": [
+    {
+      "id": "amb-1",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Review request",
+      "body": "Can you confirm our Thursday draft review?",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-06T10:00:00Z"
+    },
+    {
+      "id": "amb-2",
+      "from": "elena@harborlabs.example",
+      "to": "jordan@northstar.example",
+      "subject": "Review request",
+      "body": "Can you confirm our Thursday proposal review?",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-06T10:00:00Z"
+    },
+    {
+      "id": "amb-3",
+      "from": "finance@cedar.example",
+      "to": "jordan@northstar.example",
+      "subject": "October invoice CS-778",
+      "body": "The issued invoice total is USD 130.00.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-05T10:00:00Z"
+    },
+    {
+      "id": "amb-4",
+      "from": "finance@cedar.example",
+      "to": "jordan@northstar.example",
+      "subject": "Re: October invoice CS-778",
+      "body": "We are checking a discrepancy; a corrected invoice has not been issued. Do not approve payment.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-06T10:00:00Z"
+    },
+    {
+      "id": "amb-5",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Contact detail",
+      "body": "Harbor is separate from Harbor Labs.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    },
+    {
+      "id": "amb-6",
+      "from": "elena@harborlabs.example",
+      "to": "jordan@northstar.example",
+      "subject": "Contact detail",
+      "body": "Use our full organization name when replying.",
+      "labels": [
+        "inbox"
+      ],
+      "receivedAt": "2026-10-04T10:00:00Z"
+    }
+  ],
+  "sent": [],
+  "audit": [],
+  "dataset": {
+    "datasetId": "northstar-mailbox",
+    "version": "1.0.0",
+    "profile": "ambiguous",
+    "caseId": "ambiguous-mailbox"
+  }
+}

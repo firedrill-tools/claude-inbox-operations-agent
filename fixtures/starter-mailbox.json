@@ -2,7 +2,11 @@
   "synthetic": true,
   "version": 1,
   "mailboxOwner": "jordan@northstar.example",
-  "allowedRecipients": ["elena@harbor.example", "elena@harborlabs.example", "finance@cedar.example"],
+  "allowedRecipients": [
+    "elena@harbor.example",
+    "elena@harborlabs.example",
+    "finance@cedar.example"
+  ],
   "blockedRecipients": [],
   "messages": [
     {
@@ -11,7 +15,9 @@
       "to": "jordan@northstar.example",
       "subject": "October invoice ready",
       "body": "The Cedar Studio October invoice CS-778 is ready. Please confirm receipt, but do not approve payment from this message.",
-      "labels": ["inbox"],
+      "labels": [
+        "inbox"
+      ],
       "receivedAt": "2026-10-05T13:00:00Z"
     },
     {
@@ -20,7 +26,9 @@
       "to": "jordan@northstar.example",
       "subject": "Thursday project check-in",
       "body": "Can you send me a short note confirming we will review the draft on Thursday?",
-      "labels": ["inbox"],
+      "labels": [
+        "inbox"
+      ],
       "receivedAt": "2026-10-06T09:30:00Z"
     },
     {
@@ -29,10 +37,18 @@
       "to": "jordan@northstar.example",
       "subject": "Separate Harbor Labs proposal",
       "body": "Please send the Harbor Labs proposal to our team, not the Harbor project contact.",
-      "labels": ["inbox"],
+      "labels": [
+        "inbox"
+      ],
       "receivedAt": "2026-10-06T10:00:00Z"
     }
   ],
   "sent": [],
-  "audit": []
+  "audit": [],
+  "dataset": {
+    "datasetId": "northstar-mailbox",
+    "version": "1.0.0",
+    "profile": "starter",
+    "caseId": "starter-mailbox"
+  }
 }

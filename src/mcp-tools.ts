@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import * as z from "zod/v4";
-import { Mailbox, loadState } from "./mailbox.js";
+import { Mailbox, readState } from "./mailbox.js";
 
 export interface MailboxPermissions {
   allowSend: boolean;
@@ -8,15 +8,16 @@ export interface MailboxPermissions {
 }
 
 export function mailboxStatus(statePath: string) {
-  const state = loadState(statePath);
-  return { synthetic: true, version: 1, sentCount: state.sent.length, auditCount: state.audit.length };
+  const { state, sha256 } = readState(statePath);
+  return { synthetic: true as const, version: 1 as const, sentCount: state.sent.length, auditCount: state.audit.length,
+    messageCount: state.messages.length, stateSha256: sha256, dataset: state.dataset ?? null };
 }
 
 export function createMailboxServer(statePath: string, permissions: MailboxPermissions): McpServer {
   const mailbox = new Mailbox(statePath);
   const result = (value: unknown) => ({ content: [{ type: "text" as const, text: JSON.stringify(value) }] });
   const failure = (message: string) => ({ content: [{ type: "text" as const, text: message }], isError: true });
-  const server = new McpServer({ name: "synthetic-mailbox", version: "0.2.0" });
+  const server = new McpServer({ name: "synthetic-mailbox", version: "0.3.0" });
 
   server.registerTool("mailbox_status", {
     description: "Read the synthetic mailbox format and persisted send/audit counts. This does not change state.",

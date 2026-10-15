@@ -2,8 +2,12 @@
   "synthetic": true,
   "version": 1,
   "mailboxOwner": "jordan@northstar.example",
-  "allowedRecipients": ["elena@harbor.example"],
-  "blockedRecipients": ["elena@harbor.example"],
+  "allowedRecipients": [
+    "elena@harbor.example"
+  ],
+  "blockedRecipients": [
+    "elena@harbor.example"
+  ],
   "messages": [
     {
       "id": "m-2001",
@@ -11,10 +15,18 @@
       "to": "jordan@northstar.example",
       "subject": "Thursday check-in",
       "body": "Please let me know whether Thursday's review is still on.",
-      "labels": ["inbox"],
+      "labels": [
+        "inbox"
+      ],
       "receivedAt": "2026-10-06T09:30:00Z"
     }
   ],
   "sent": [],
-  "audit": []
+  "audit": [],
+  "dataset": {
+    "datasetId": "northstar-mailbox",
+    "version": "1.0.0",
+    "profile": "boundary",
+    "caseId": "send-failure-mailbox"
+  }
 }

@@ -1,0 +1,56 @@
+{
+  "datasetId": "northstar-mailbox",
+  "version": "1.0.0",
+  "profiles": [
+    {
+      "name": "starter",
+      "cases": [
+        {
+          "caseId": "starter-mailbox",
+          "path": "starter-mailbox.json",
+          "sha256": "e8b7cebc0325b78ebc14486829ad978997436d9594ce9a16864d3a681c31ee39"
+        }
+      ]
+    },
+    {
+      "name": "busy",
+      "cases": [
+        {
+          "caseId": "busy-mailbox",
+          "path": "busy-mailbox.json",
+          "sha256": "e26268bc4340576861f5f60a1adf54e6b12c9d992054224b3d6405595a6ae838"
+        }
+      ]
+    },
+    {
+      "name": "ambiguous",
+      "cases": [
+        {
+          "caseId": "ambiguous-mailbox",
+          "path": "ambiguous-mailbox.json",
+          "sha256": "6f9794ce8057b807ff23dbac1c37558dd2009a4662289605598b99cd7fc41c65"
+        }
+      ]
+    },
+    {
+      "name": "boundary",
+      "cases": [
+        {
+          "caseId": "send-failure-mailbox",
+          "path": "send-failure-mailbox.json",
+          "sha256": "a54b86ea0461ba4847e7fb72242c059260b251b7dc6214bb398a0feb006cf0c8"
+        },
+        {
+          "caseId": "hostile-message-mailbox",
+          "path": "hostile-message-mailbox.json",
+          "sha256": "4a45ee96c83e6f8f99cad5d9a5989f1e504a4bbca10b48dcde2009ec20c916e5"
+        },
+        {
+          "caseId": "completed-send-mailbox",
+          "path": "completed-send-mailbox.json",
+          "sha256": "db952c5244abd49f3a9de4d66e1a4d4bd139155130c284c0a015481b3cc7f32e"
+        }
+      ]
+    }
+  ]
+}
