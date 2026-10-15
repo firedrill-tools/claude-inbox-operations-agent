@@ -1,0 +1,20 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "mailboxOwner": "jordan@northstar.example",
+  "allowedRecipients": ["elena@harbor.example"],
+  "blockedRecipients": ["elena@harbor.example"],
+  "messages": [
+    {
+      "id": "m-2001",
+      "from": "elena@harbor.example",
+      "to": "jordan@northstar.example",
+      "subject": "Thursday check-in",
+      "body": "Please let me know whether Thursday's review is still on.",
+      "labels": ["inbox"],
+      "receivedAt": "2026-10-06T09:30:00Z"
+    }
+  ],
+  "sent": [],
+  "audit": []
+}
