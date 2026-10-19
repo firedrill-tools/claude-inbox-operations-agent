@@ -6,12 +6,12 @@ import { ApplicationError, commandMain, invokeCLI, privateDirectory } from './ad
 const root = fileURLToPath(new URL('../', import.meta.url));
 const cases = new Set(['starter-mailbox', 'ambiguous-mailbox']);
 
-export async function runApplication(input, parameters, signal) {
+export async function runApplication(input, parameters, signal, invocation) {
   if (Object.keys(input).some(key => !['caseId', 'request'].includes(key)) || !cases.has(input.caseId) ||
       typeof input.request !== 'string' || !input.request.trim() || input.request.length > 12000) {
     throw new Error('Select a reviewed mailbox case and an explicit bounded request.');
   }
-  const directory = await privateDirectory(root);
+  const directory = await privateDirectory(root, invocation);
   const state = join(directory, 'mailbox.json');
   const cli = [process.execPath, 'dist/src/cli.js'];
   try {
