@@ -14,3 +14,7 @@ The real application is `src/agent.ts`, invoked by `src/cli.ts`. It uses `@anthr
 - Failure: JSON stderr/no success stdout, retaining available raw SDK result and initial/final status hashes. A state-read failure stays explicit/null and must not erase model evidence or imply rollback. Inspect audit and preserve caller request ID on a send retry.
 - Evidence: final answer, request/prompt/state hashes, declared dataset identity and raw SDK result with session/usage/per-model totals/permission denials. SDK cost is an estimate; missing usage is unknown, never zero billing. Do not sum cumulative modelUsage with main-loop usage. Current state hash must be compared with seed manifest if claiming pristine reset. No live model result exists yet.
 - Keep provider credentials out of target MCP and Git. Do not present this subset as full Gmail compatibility or use old Firedrill drills. A new Firedrill connection remains pending verification of the released interface.
+
+## Current Firedrill connection — 2026-10-19
+
+Read `firedrill/README.md` for the optional pinned CLI/SDK 2.2.2 connection. Preserve the real application and local target MCP; the remote OAuth Firedrill MCP is an operator interface. Use exclusive private mailbox state per invocation, retain failed state/evidence, and keep label/send grants absent from the observation-only recipe. Run integration checks with the existing 35 protocol/state tests. Current release availability supersedes older pending-release notes; authenticated persisted and live model evidence remain separate.

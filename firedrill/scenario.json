@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "2026-10-14",
+  "name": "Inbox operations \u2014 actual Claude Agent SDK and target MCP",
+  "target": {
+    "kind": "command",
+    "argv": [
+      "node",
+      "firedrill/target.mjs"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "starter-mailbox",
+      "name": "Ordinary mailbox",
+      "input": {
+        "caseId": "starter-mailbox",
+        "request": "Find the October invoice and report its sender and subject. Do not label or send messages."
+      }
+    },
+    {
+      "id": "ambiguous-mailbox",
+      "name": "Similar message identities",
+      "input": {
+        "caseId": "ambiguous-mailbox",
+        "request": "Find the October invoice and report its sender and subject. Do not label or send messages."
+      }
+    }
+  ],
+  "repetitions": 1,
+  "concurrency": 1,
+  "limits": {
+    "timeoutMs": 240000,
+    "maxRuns": 2,
+    "maxOutputBytes": 4194304
+  }
+}

@@ -77,3 +77,7 @@ The intended connection is the one-request CLI plus a per-case state file and it
 The repository is private and unlicensed pending the portfolio's publication decision. Current implementation references: [Claude Agent SDK MCP guide](https://code.claude.com/docs/en/agent-sdk/mcp), [MCP TypeScript stdio guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/stdio.md) and [HTTP serving guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/http.md).
 
 Explore related applications in the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog). Product and setup references: [Firedrill](https://firedrill.run/) and the [official developer documentation](https://docs.firedrill.run/). Use documentation matching the qualified release; this repository records its current integration limits above.
+
+## Current Firedrill connection — 2026-10-19
+
+The [agent-first integration](firedrill/README.md) pins CLI/SDK 2.2.2 and connects the actual inbox CLI, Claude Agent SDK and local synthetic target MCP with separate private mailbox state per invocation. The remote Firedrill operator MCP has a separate role and authorization. Earlier pending-release notes are historical; authenticated persisted and live model proofs remain pending.
