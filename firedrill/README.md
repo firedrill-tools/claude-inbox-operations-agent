@@ -55,7 +55,7 @@ The target envelope uses `2026-10-17-target-invocation.1`, ID-only scenario cont
 
 Preserve operation IDs and private journals after uncertainty. Use `--resume OPERATION_ID` for that execution or `--result BATCH_ID` for a retained read; a fresh simulation is new work. Runner exit codes preserve pending work/assessment, errors and optional gates. This observation-only recipe requests no evaluation or gate.
 
-Ordinary CI is offline. Use the [live CI generator](https://docs.firedrill.run/guides/ci) only after actual scope, protected secrets and budgets are configured. Authenticated persisted happy/negative runs, live Claude quality/cost, hosted target-MCP qualification, publication and licensing remain separate gates.
+Ordinary CI is offline. Use the [live CI generator](https://docs.firedrill.run/guides/ci) only after actual scope, protected secrets and budgets are configured. Authenticated persisted happy/negative runs, live Claude quality/cost, hosted target-MCP qualification, and licensing remain separate gates.
 
 References: [SDK](https://docs.firedrill.run/sdk/typescript), [command targets](https://docs.firedrill.run/guides/callbacks), [operator MCP](https://docs.firedrill.run/guides/control-mcp).
 

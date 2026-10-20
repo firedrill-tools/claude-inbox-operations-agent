@@ -2,6 +2,8 @@
 
 This standalone TypeScript command-line application lets a Claude agent search and read messages, label a message, and send a message inside a fictional mailbox. The model chooses the MCP calls; the mailbox service persists actual state changes and a small action audit. It supports an owned stdio child process or an explicitly selected authenticated HTTP MCP endpoint. It does not connect to Gmail or deliver real email. The target MCP service implements a narrow Gmail-style operation subset.
 
+This example repository is publicly viewable. A project license has not been selected.
+
 ## Simulate with Firedrill
 
 [Firedrill](https://firedrill.run/) is a simulation platform for AI agents.
@@ -88,7 +90,7 @@ The 35 offline checks compile TypeScript, connect actual MCP clients over stdio/
 
 The intended connection is the one-request CLI plus a per-case state file and its owned MCP child process, or an explicitly supplied HTTP MCP endpoint whose process and reset are caller-owned. The included [Firedrill integration](firedrill/README.md) uses this CLI and its owned synthetic mailbox MCP. Authenticated persisted reports and live CI remain unverified. No retired `firedrill.json`, drill command or unsupported Gmail compatibility claim is included.
 
-The repository is private and unlicensed pending the portfolio's publication decision. Current implementation references: [Claude Agent SDK MCP guide](https://code.claude.com/docs/en/agent-sdk/mcp), [MCP TypeScript stdio guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/stdio.md) and [HTTP serving guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/http.md).
+The repository is publicly viewable; no project license has been selected. Current implementation references: [Claude Agent SDK MCP guide](https://code.claude.com/docs/en/agent-sdk/mcp), [MCP TypeScript stdio guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/stdio.md) and [HTTP serving guide](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/http.md).
 
 Explore related applications in the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog). Product and setup references: [Firedrill](https://firedrill.run/) and the [official developer documentation](https://docs.firedrill.run/). Use documentation matching the qualified release; this repository records its current integration limits above.
 
